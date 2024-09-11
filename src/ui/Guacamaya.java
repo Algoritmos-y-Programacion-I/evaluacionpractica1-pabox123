@@ -20,7 +20,6 @@ public class Guacamaya {
      * pos: l Scanner reader queda inicializado
     */
     public static void inicializarGlobales() {
-
         reader = new Scanner(System.in);
 
     }
@@ -61,7 +60,7 @@ public class Guacamaya {
                     System.out.println("\nEl precio promedio de las referencias de producto vendidas en el dia fue de: "+calcularPrecioPromedio());
                     break;
                 case 4:
-                    System.out.println("\nLas ventas totales (dinero recaudado) durante el dia fueron: "+calcularVentasTotales());
+                    System.out.println("\nLas ventas totales (dinero recaudado) durante el dia fueron: "+ calcularVentasTotales());
                     break;
                 case 5:
                     System.out.println("\nDigite el limite minimo de ventas a analizar");
@@ -96,35 +95,59 @@ public class Guacamaya {
 
         precios = new double[referencias];
         unidades = new int[referencias];
-
+        
     }
 
     public static void solicitarDatos(){
-
+        for (int i = 0; i < precios.length; i++) {
+            System.out.println("coloque el precio de la referencia " + (i + 1) + ": ");
+            precios[i] = reader.nextDouble();
+            System.out.println("coloque la cantidad vendida de la referencia " + (i + 1) + ": ");
+            unidades[i] = reader.nextInt();
+        }
      
     }
 
-    public static int calcularTotalUnidadesVendidas(){
+    public static int calcularTotalUnidadesVendidas() {
+            int totalUnidades = 0;
+            for (int unidad : unidades) {
+                totalUnidades += unidad;
+            }
+            return totalUnidades;
+     }
+        
+      
 
-        return 0;
-
-    }
+    
 
     public static double calcularPrecioPromedio(){
-
-        return 0;
+double sumaPrecios=0;
+for (double precio:precios){
+    sumaPrecios += precio;
+    
+}
+return sumaPrecios/precios.length;
 
     }
 
     public static double calcularVentasTotales(){
+double totalVentas=0;
+for (int i= 0; 1 <precios.length; i++){
+    totalVentas  += precios[i] * unidades[i];
+}
 
-        return 0;
+        return totalVentas;
 
     }
 
     public static int consultarReferenciasSobreLimite(double limite){
-
-        return 0;
+int contador=0;
+for ( int i =0; i < precios.length; i++){
+    if (precios[i] * unidades [i]>limite ){
+        contador++;
+    }
+}
+        return contador;
 
     }
 
